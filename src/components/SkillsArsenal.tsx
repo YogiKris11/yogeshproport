@@ -63,8 +63,9 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-  const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25 });
+  // Aggressive translation to cover all 7 cards
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-480%"]);
+  const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="h-[400vh] relative bg-black">
@@ -96,19 +97,19 @@ export const SkillsArsenal: React.FC = () => {
         {/* Horizontal Track */}
         <motion.div 
           style={{ x: smoothX }} 
-          className="flex gap-12 md:gap-24 px-8 md:px-[20vw] items-center"
+          className="flex gap-12 md:gap-24 px-8 md:px-[20vw] items-center whitespace-nowrap"
         >
           {skills.map((skill, idx) => (
             <motion.div
               key={skill.name}
-              className="relative w-[80vw] md:w-[500px] h-[55vh] flex-shrink-0 group"
+              className="relative w-[85vw] md:w-[500px] h-[55vh] flex-shrink-0 group"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="absolute -top-12 -left-6 text-7xl font-black text-white/[0.03] select-none pointer-events-none group-hover:text-accent/[0.08] transition-colors duration-700 font-headline">
                 {String(idx + 1).padStart(2, '0')}
               </div>
 
-              <div className="h-full w-full bg-card/40 backdrop-blur-3xl rounded-[2rem] border border-white/5 p-8 md:p-12 flex flex-col justify-between hover:border-accent/40 transition-all duration-700 shadow-2xl overflow-hidden">
+              <div className="h-full w-full bg-card/40 backdrop-blur-3xl rounded-[2rem] border border-white/5 p-8 md:p-12 flex flex-col justify-between hover:border-accent/40 transition-all duration-700 shadow-2xl overflow-hidden whitespace-normal">
                 
                 {/* Background Glow */}
                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-accent/5 rounded-full blur-[80px] group-hover:bg-accent/10 transition-all duration-1000" />
