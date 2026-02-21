@@ -37,12 +37,6 @@ export default function Home() {
         <div className="text-xl md:text-2xl font-black font-headline uppercase tracking-tighter text-white">
           Yogesh's <span className="text-primary">Essence</span>
         </div>
-        <div className="hidden md:flex gap-12 text-xs font-mono uppercase tracking-[0.4em] font-bold text-white/50">
-          <a href="#essence" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Essence</a>
-          <a href="#arsenal" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Arsenal</a>
-          <a href="#projects" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Works</a>
-          <a href="#contact" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Contact</a>
-        </div>
       </nav>
 
       <section id="hero" className="scroll-section relative h-[250vh]">
