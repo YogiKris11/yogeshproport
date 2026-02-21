@@ -13,14 +13,14 @@ export default function Home() {
   const featuredProjects = projects.filter(p => p.featured);
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // Track vertical scroll progress for the projects track
+  // Refined offset: ["start start", "end end"] precisely tracks the period the section is sticky
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ["start start", "end end"]
   });
 
-  // Reduced runway to 450vh and tightened mapping to eliminate empty scrolls at the end
-  const xTranslate = useTransform(scrollYProgress, [0.1, 1], ["0%", "-400%"]);
+  // Tighter mapping [0, 1] across a 380vh runway to eliminate "dead scrolls"
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-330%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -61,8 +61,8 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Projects Horizontal Track */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[450vh] bg-black">
+      {/* Projects Horizontal Track - Optimized height for 14-inch laptops */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[380vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
@@ -72,7 +72,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
@@ -91,7 +91,7 @@ export default function Home() {
           {/* Horizontal Scroll Area */}
           <motion.div 
             style={{ x: smoothX }} 
-            className="flex gap-20 md:gap-40 px-8 md:px-[25vw] items-center whitespace-nowrap"
+            className="flex gap-20 md:gap-40 px-8 md:px-[15vw] items-center whitespace-nowrap"
           >
             {featuredProjects.map((project, idx) => (
               <ProjectCard key={project.id} project={project} index={idx} />
@@ -101,7 +101,7 @@ export default function Home() {
           {/* Background Text Parallax */}
           <div className="absolute bottom-10 right-0 pointer-events-none select-none overflow-hidden w-full">
             <motion.span 
-              style={{ x: useTransform(scrollYProgress, [0, 1], ["30%", "-90%"]) }}
+              style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-60%"]) }}
               className="text-[20vw] font-black text-white/[0.01] font-headline whitespace-nowrap leading-none block"
             >
               ENGINEERING INTELLIGENCE
