@@ -63,12 +63,12 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Tightened runway to 170vh to remove dead air after the 7th skill
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-480%"]);
-  const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
+  // Recalibrated for 7 skills: -400% provides a tight reveal with no trailing black screen
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-400%"]);
+  const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[170vh] relative bg-black">
+    <div ref={containerRef} className="h-[250vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">

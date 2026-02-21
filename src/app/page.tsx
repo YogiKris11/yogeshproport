@@ -18,9 +18,9 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Tightened runway to 270vh and translation mapping to ensure instant section release
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-330%"]);
-  const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
+  // Recalibrated for 5 projects: -260% ensures the last card stays in frame until the very end
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-260%"]);
+  const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -55,7 +55,7 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[270vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[300vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
@@ -64,7 +64,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
