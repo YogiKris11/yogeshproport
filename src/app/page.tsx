@@ -13,13 +13,11 @@ export default function Home() {
   const featuredProjects = projects.filter(p => p.featured);
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // Refined offset: ["start start", "end end"] precisely tracks the period the section is sticky
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ["start start", "end end"]
   });
 
-  // Tighter mapping [0, 1] across a 380vh runway to eliminate "dead scrolls"
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-330%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
@@ -56,12 +54,12 @@ export default function Home() {
         <AboutMe />
       </section>
 
-      {/* Skills Arsenal Track - Updated to relative track height */}
+      {/* Skills Arsenal Track - Horizontal */}
       <section id="arsenal" className="scroll-section relative">
         <SkillsArsenal />
       </section>
 
-      {/* Projects Horizontal Track - Optimized height for 14-inch laptops */}
+      {/* Projects Horizontal Track */}
       <section id="projects" ref={scrollRef} className="scroll-section relative h-[380vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
