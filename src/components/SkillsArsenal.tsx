@@ -63,12 +63,12 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Aggressive translation to cover all 7 cards
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-480%"]);
+  // Mapped to cover all 7 cards precisely across a 350vh runway
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-580%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[400vh] relative bg-black">
+    <div ref={containerRef} className="h-[350vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         {/* Section Header */}
