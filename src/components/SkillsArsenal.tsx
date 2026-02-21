@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useRef } from 'react';
@@ -64,13 +63,12 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Adjusted translation and range to eliminate empty scroll on 14" laptops
-  // For 7 cards, moving about -520% ensures the last card is fully visible without extra runway
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-520%"]);
+  // Tightened runway to 200vh and translation to -510% for 7 cards on 14" displays
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-510%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[280vh] relative bg-black">
+    <div ref={containerRef} className="h-[200vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         {/* Section Header */}

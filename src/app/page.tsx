@@ -18,6 +18,7 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
+  // Tightened translation for 5 projects to match 300vh runway
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-330%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
@@ -59,8 +60,8 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Projects Horizontal Track */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[380vh] bg-black">
+      {/* Projects Horizontal Track - Refined runway to 300vh for 14" screens */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[300vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
