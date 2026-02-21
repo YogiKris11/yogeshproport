@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -9,6 +8,7 @@ import { EngineeringPhilosophy } from '@/components/EngineeringPhilosophy';
 import { TechStackGrid } from '@/components/TechStackGrid';
 import { FinalCTA } from '@/components/FinalCTA';
 import { DescriptionGenerator } from '@/components/DescriptionGenerator';
+import { SkillsArsenal } from '@/components/SkillsArsenal';
 import { projects } from '@/app/data/projects';
 import { motion } from 'framer-motion';
 
@@ -24,9 +24,9 @@ export default function Home() {
         </div>
         <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest font-semibold">
           <a href="#about" className="hover:text-electric-blue transition-colors">About</a>
+          <a href="#arsenal" className="hover:text-electric-blue transition-colors">Arsenal</a>
           <a href="#projects" className="hover:text-electric-blue transition-colors">Projects</a>
           <a href="#philosophy" className="hover:text-electric-blue transition-colors">Philosophy</a>
-          <a href="#tech" className="hover:text-electric-blue transition-colors">Stack</a>
           <a href="#contact" className="hover:text-electric-blue transition-colors">Contact</a>
         </div>
       </nav>
@@ -36,6 +36,8 @@ export default function Home() {
       <section id="about">
         <AboutMe />
       </section>
+
+      <SkillsArsenal />
 
       <section id="projects" className="py-24 px-6 relative z-10 bg-bg-primary">
         <div className="max-w-7xl mx-auto">
