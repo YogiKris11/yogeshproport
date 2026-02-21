@@ -20,10 +20,11 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // For 5 projects, we need to translate enough to show the last one.
-  // We map from 0.05 (start showing) to 0.95 (reached the end).
-  // A translation of -82% is roughly correct for 5 large cards with gaps.
-  const xTranslate = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-82%"]);
+  // For 5 projects, we need to translate significantly more.
+  // We map from start (0.1) to near end (0.9) of the pinned runway.
+  // Card 1 starts at 0. Each card + gap is roughly 750px. 
+  // For 5 projects, we need to slide roughly -250% to show all of them.
+  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-260%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -65,7 +66,7 @@ export default function Home() {
       </section>
 
       {/* Projects Horizontal Track */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[700vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[800vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
@@ -81,7 +82,7 @@ export default function Home() {
             </motion.div>
             
             <div className="hidden md:block text-right mb-4">
-              <p className="text-muted-foreground font-mono text-xs uppercase tracking-[0.5em] mb-2">Systems Gallery</p>
+              <p className="text-muted-foreground font-mono text-xs uppercase tracking-[0.5em] mb-2">Engineering Gallery</p>
               <div className="flex gap-2 justify-end">
                 <motion.div 
                   className="h-[2px] bg-primary" 
@@ -104,7 +105,7 @@ export default function Home() {
           {/* Background Text Parallax */}
           <div className="absolute bottom-10 right-0 pointer-events-none select-none overflow-hidden w-full">
             <motion.span 
-              style={{ x: useTransform(scrollYProgress, [0, 1], ["50%", "-50%"]) }}
+              style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-80%"]) }}
               className="text-[20vw] font-black text-white/[0.01] font-headline whitespace-nowrap leading-none block"
             >
               ENGINEERING INTELLIGENCE

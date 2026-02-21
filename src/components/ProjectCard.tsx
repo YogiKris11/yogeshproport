@@ -1,9 +1,9 @@
 
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
-import { Github, ExternalLink, ArrowRight, Layers, X, Cpu, Globe, Code2 } from 'lucide-react';
+import { Github, ExternalLink, ArrowRight, Layers, Cpu, Globe, Code2 } from 'lucide-react';
 import { Project } from '@/app/data/projects';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -59,11 +59,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       className="relative w-[85vw] md:w-[650px] flex-shrink-0 h-[60vh] md:h-[70vh] group perspective-1000"
     >
       {/* Background Index Decor */}
-      <div className="absolute -top-20 -left-10 text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none group-hover:text-electric-blue/[0.05] transition-colors duration-1000 font-headline leading-none">
+      <div className="absolute -top-20 -left-10 text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none group-hover:text-primary/[0.05] transition-colors duration-1000 font-headline leading-none">
         {index + 1}
       </div>
 
-      <div className="relative h-full w-full bg-card/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden border border-white/5 group-hover:border-electric-blue/30 transition-all duration-700 shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
+      <div className="relative h-full w-full bg-card/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden border border-white/5 group-hover:border-primary/30 transition-all duration-700 shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
         
         {/* Project Image Header */}
         <div className="relative h-[45%] w-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
@@ -72,7 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             alt={project.title}
             fill
             className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
-            data-ai-hint="tech architecture"
+            data-ai-hint="high tech"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
           <div className="absolute top-6 left-6 flex gap-2">
@@ -88,13 +88,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         <div className="p-8 md:p-12 flex flex-col justify-between h-[55%]">
           <div style={{ transform: 'translateZ(50px)' }}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-4xl md:text-5xl font-bold font-headline tracking-tighter group-hover:text-electric-blue transition-colors duration-500">
+              <h3 className="text-4xl md:text-5xl font-bold font-headline tracking-tighter group-hover:text-primary transition-colors duration-500 whitespace-normal">
                 {project.title}
               </h3>
-              <Layers className="w-6 h-6 text-muted-foreground group-hover:text-neural-cyan transition-colors" />
+              <Layers className="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors" />
             </div>
             
-            <p className="text-muted-foreground text-sm md:text-lg leading-relaxed font-medium line-clamp-3">
+            <p className="text-muted-foreground text-sm md:text-lg leading-relaxed font-medium line-clamp-3 whitespace-normal">
               {project.description}
             </p>
           </div>
@@ -117,7 +117,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               <DialogTrigger asChild>
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-4 bg-electric-blue/10 hover:bg-electric-blue text-electric-blue hover:text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border border-electric-blue/20"
+                  className="flex items-center gap-4 bg-primary/10 hover:bg-primary text-primary hover:text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border border-primary/20"
                 >
                   View More
                   <ArrowRight className="w-4 h-4" />
@@ -153,43 +153,37 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                     <div>
                       <h4 className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">
                         <Cpu className="w-4 h-4" />
-                        System Architecture
+                        System Overview
                       </h4>
                       <p className="text-muted-foreground leading-relaxed text-lg">
                         {project.fullDescription}
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 p-4 rounded-2xl transition-all group">
-                        <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
-                        <span className="font-bold text-xs uppercase tracking-widest">Source Code</span>
-                      </a>
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary border border-primary/20 p-4 rounded-2xl transition-all group">
-                        <Globe className="w-5 h-5 group-hover:text-white transition-colors" />
-                        <span className="font-bold text-xs uppercase tracking-widest">Live Demo</span>
-                      </a>
-                    </div>
-
                     <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl">
                       <h4 className="flex items-center gap-2 text-white font-mono text-xs uppercase tracking-[0.3em] mb-4">
                         <Code2 className="w-4 h-4" />
-                        Key Engineering Wins
+                        Engineering Wins
                       </h4>
                       <ul className="space-y-3 text-sm text-muted-foreground">
-                        <li className="flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          Optimized rendering pipeline for 60fps interaction.
-                        </li>
-                        <li className="flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          Scalable backend with distributed cache support.
-                        </li>
-                        <li className="flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          End-to-end type safety across the entire stack.
-                        </li>
+                        {project.engineeringWins.map((win, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                            {win}
+                          </li>
+                        ))}
                       </ul>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 p-4 rounded-2xl transition-all group">
+                        <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
+                        <span className="font-bold text-xs uppercase tracking-widest">Source</span>
+                      </a>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary border border-primary/20 p-4 rounded-2xl transition-all group">
+                        <Globe className="w-5 h-5 group-hover:text-white transition-colors" />
+                        <span className="font-bold text-xs uppercase tracking-widest">Live Demo</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -199,7 +193,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         </div>
 
         {/* Floating Glow */}
-        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-electric-blue/20 rounded-full blur-[80px] group-hover:bg-neural-cyan/30 transition-all duration-1000" />
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px] group-hover:bg-accent/30 transition-all duration-1000" />
       </div>
     </motion.div>
   );
