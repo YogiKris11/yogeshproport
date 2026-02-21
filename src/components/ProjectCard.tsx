@@ -1,11 +1,12 @@
 
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowRight, Code2 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { Github, ExternalLink, ArrowRight, Layers } from 'lucide-react';
 import { Project } from '@/app/data/projects';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
@@ -13,73 +14,110 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // Mouse tilt effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 300, damping: 30 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    
+    mouseX.set(x);
+    mouseY.set(y);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
+
   return (
     <motion.div
-      className="relative w-[350px] md:w-[500px] flex-shrink-0 h-[500px] group"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      className="relative w-[85vw] md:w-[650px] flex-shrink-0 h-[60vh] md:h-[70vh] group perspective-1000"
     >
-      {/* Background Index Accent */}
-      <div className="absolute -top-12 -left-6 text-[12rem] font-bold text-white/[0.03] select-none pointer-events-none group-hover:text-electric-blue/10 transition-colors duration-700 font-headline">
-        0{index + 1}
+      {/* Background Index Decor */}
+      <div className="absolute -top-20 -left-10 text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none group-hover:text-electric-blue/[0.05] transition-colors duration-1000 font-headline leading-none">
+        {index + 1}
       </div>
 
-      <div className="relative h-full glass-card rounded-3xl p-8 md:p-12 flex flex-col justify-between overflow-hidden border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent hover:border-electric-blue/30 transition-all duration-500 shadow-2xl">
-        {/* Animated Glow Following */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-electric-blue/5 via-transparent to-neural-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="relative h-full w-full bg-card/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden border border-white/5 group-hover:border-electric-blue/30 transition-all duration-700 shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
         
-        <div className="relative z-10">
-          <div className="flex justify-between items-start mb-8">
-            <div className="p-3 bg-electric-blue/10 rounded-2xl border border-electric-blue/20">
-              <Code2 className="w-6 h-6 text-electric-blue" />
-            </div>
-            <div className="flex gap-3">
-              {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 text-muted-foreground hover:text-electric-blue transition-all">
-                  <Github className="w-5 h-5" />
-                </a>
-              )}
-              {project.live && (
-                <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 text-muted-foreground hover:text-neural-cyan transition-all">
-                  <ExternalLink className="w-5 h-5" />
-                </a>
-              )}
-            </div>
-          </div>
-
-          <h3 className="text-3xl md:text-4xl font-bold font-headline mb-4 group-hover:text-electric-blue transition-colors duration-300 tracking-tight">
-            {project.title}
-          </h3>
-          
-          <p className="text-muted-foreground text-sm md:text-lg leading-relaxed mb-8 font-medium">
-            {project.description}
-          </p>
-        </div>
-
-        <div className="relative z-10">
-          <div className="flex flex-wrap gap-2 mb-10">
-            {project.techStack.map((tech) => (
-              <Badge 
-                key={tech} 
-                variant="outline" 
-                className="bg-transparent text-[10px] uppercase tracking-widest font-bold border-white/10 text-muted-foreground group-hover:border-electric-blue/20 group-hover:text-white transition-all"
-              >
+        {/* Project Image Header */}
+        <div className="relative h-[45%] w-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+          <Image 
+            src={project.image} 
+            alt={project.title}
+            fill
+            className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+            data-ai-hint="tech architecture"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+          <div className="absolute top-6 left-6 flex gap-2">
+            {project.techStack.slice(0, 2).map(tech => (
+              <Badge key={tech} className="bg-white/10 backdrop-blur-md border-white/10 text-[10px] uppercase tracking-tighter">
                 {tech}
               </Badge>
             ))}
           </div>
-
-          <motion.button 
-            whileHover={{ x: 10 }}
-            className="flex items-center gap-3 text-sm font-bold text-electric-blue group-hover:text-neural-cyan transition-colors uppercase tracking-widest"
-          >
-            Explore Project 
-            <div className="p-1 rounded-full border border-current">
-              <ArrowRight className="w-3 h-3" />
-            </div>
-          </motion.button>
         </div>
 
-        {/* Decorative corner element */}
-        <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-electric-blue/10 to-transparent rounded-tl-full translate-x-12 translate-y-12 group-hover:translate-x-4 group-hover:translate-y-4 transition-transform duration-700" />
+        {/* Content Body */}
+        <div className="p-8 md:p-12 flex flex-col justify-between h-[55%]">
+          <div style={{ transform: 'translateZ(50px)' }}>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-4xl md:text-5xl font-bold font-headline tracking-tighter group-hover:text-electric-blue transition-colors duration-500">
+                {project.title}
+              </h3>
+              <Layers className="w-6 h-6 text-muted-foreground group-hover:text-neural-cyan transition-colors" />
+            </div>
+            
+            <p className="text-muted-foreground text-sm md:text-lg leading-relaxed font-medium line-clamp-3">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between mt-auto" style={{ transform: 'translateZ(30px)' }}>
+            <div className="flex gap-4">
+              {project.github && (
+                <a href={project.github} className="text-muted-foreground hover:text-white transition-colors">
+                  <Github className="w-6 h-6" />
+                </a>
+              )}
+              {project.live && (
+                <a href={project.live} className="text-muted-foreground hover:text-white transition-colors">
+                  <ExternalLink className="w-6 h-6" />
+                </a>
+              )}
+            </div>
+
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-4 bg-electric-blue/10 hover:bg-electric-blue text-electric-blue hover:text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border border-electric-blue/20"
+            >
+              View Case Study
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Floating Glow */}
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-electric-blue/20 rounded-full blur-[80px] group-hover:bg-neural-cyan/30 transition-all duration-1000" />
       </div>
     </motion.div>
   );
