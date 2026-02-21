@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useRef } from 'react';
@@ -51,9 +50,9 @@ export const AboutMe: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Main Heading - Slightly reduced font size as requested */}
+          {/* Main Heading - Refined font size */}
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-6xl font-medium tracking-tight font-headline leading-[1.1] text-white">
+            <h2 className="text-xl md:text-3xl lg:text-5xl font-medium tracking-tight font-headline leading-[1.1] text-white">
               I am a technology professional focused on developing <span className="text-primary font-bold">intelligent applications</span> and crafting seamless digital experiences.
             </h2>
           </motion.div>
@@ -79,7 +78,7 @@ export const AboutMe: React.FC = () => {
             className="relative pl-8 md:pl-12 py-4"
           >
             <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/40" />
-            <p className="text-xl md:text-3xl font-medium text-muted-foreground leading-relaxed max-w-4xl">
+            <p className="text-xl md:text-2xl font-medium text-muted-foreground leading-relaxed max-w-4xl">
               This combination of technical skill and real-world experience informs my approach to creating digital solutions that are not only robust and elegant but also <span className="text-accent font-bold">drive momentum</span>, foster collaboration, and generate meaningful impact.
             </p>
           </motion.div>

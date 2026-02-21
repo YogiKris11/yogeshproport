@@ -73,7 +73,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-6xl md:text-[8vw] font-black uppercase leading-[0.8] tracking-tighter font-headline text-white/90">
+              <h2 className="text-5xl md:text-7xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
