@@ -1,17 +1,25 @@
 
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { HeroCanvasAnimation } from '@/components/HeroCanvasAnimation';
 import { AboutMe } from '@/components/AboutMe';
 import { ProjectCard } from '@/components/ProjectCard';
 import { FinalCTA } from '@/components/FinalCTA';
 import { SkillsArsenal } from '@/components/SkillsArsenal';
 import { projects } from '@/app/data/projects';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = projects.filter(p => p.featured);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start start", "end end"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
 
   return (
     <main className="min-h-screen bg-bg-primary">
@@ -36,36 +44,38 @@ export default function Home() {
 
       <SkillsArsenal />
 
-      <section id="projects" className="py-24 px-6 relative z-10 bg-bg-primary">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4"
-              >
-                Things I've <span className="text-electric-blue">Built</span>
-              </motion.h2>
-              <p className="text-muted-foreground font-mono uppercase tracking-widest max-w-xl">
-                A selection of applications focused on solving real-world problems with elegant code.
-              </p>
-            </div>
+      {/* Horizontal Scroll Projects Section */}
+      <section id="projects" ref={scrollRef} className="relative h-[400vh] bg-bg-primary">
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+          <div className="max-w-7xl mx-auto w-full px-6 mb-12">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-right"
             >
-              <span className="text-5xl font-bold text-muted/20 font-headline">01</span>
+              <h2 className="text-5xl md:text-8xl font-bold uppercase tracking-tight mb-2">
+                Things I've <span className="text-electric-blue">Built</span>
+              </h2>
+              <div className="flex items-center gap-4 text-muted-foreground font-mono text-sm uppercase tracking-[0.3em]">
+                <div className="h-px w-12 bg-electric-blue" />
+                <span>Selected Works Showcase</span>
+              </div>
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div style={{ x }} className="flex gap-8 px-6 md:px-[10%]">
             {featuredProjects.map((project, idx) => (
               <ProjectCard key={project.id} project={project} index={idx} />
             ))}
+            
+            {/* End Cap for layout spacing */}
+            <div className="w-[100px] md:w-[300px] flex-shrink-0" />
+          </motion.div>
+
+          {/* Background Text Accent */}
+          <div className="absolute bottom-10 right-10 pointer-events-none opacity-5 flex flex-col items-end">
+            <span className="text-[10vw] font-bold font-headline leading-none">WORKS</span>
+            <span className="text-[2vw] font-mono tracking-widest uppercase">Portfolio v2.0</span>
           </div>
         </div>
       </section>
