@@ -25,11 +25,11 @@ export const AboutMe: React.FC = () => {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={targetRef} className="h-[400vh] w-full relative">
+    <div ref={targetRef} className="h-[250vh] w-full relative">
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-24 bg-background">
         
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
-          <h2 className="text-[25vw] font-black uppercase leading-none font-headline">IDENTITY</h2>
+          <h2 className="text-[20vw] font-black uppercase leading-none font-headline">ESSENCE</h2>
         </div>
 
         <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/5 hidden xl:block">
@@ -41,26 +41,26 @@ export const AboutMe: React.FC = () => {
 
         <div className="max-w-5xl w-full text-left relative z-10">
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-8">
-            <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.4em] text-primary font-bold">
-              A Bit About Me
+            <span className="text-[10px] md:text-sm font-headline font-bold uppercase tracking-[0.4em] text-primary">
+              Yogesh's Essence
             </span>
           </motion.div>
 
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-16">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-medium tracking-tight font-headline leading-[1.2] text-white">
+            <h2 className="text-xl md:text-2xl font-medium tracking-tight font-headline leading-[1.2] text-white">
               I am a technology professional focused on developing <span className="text-primary font-bold">intelligent applications</span> and crafting seamless digital experiences.
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-16">
             <motion.div style={{ opacity: opacity2, y: y2 }}>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 Proficient in <span className="text-white font-bold">Python, Flutter, React, Node.js</span>, and system design, I combine technical expertise with analytical problem-solving to deliver efficient, scalable, and well-structured solutions.
               </p>
             </motion.div>
 
             <motion.div style={{ opacity: opacity3, y: y3 }}>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 Beyond coding, I draw inspiration from strategic thinking and discipline cultivated through sports and fitness, which enhance <span className="text-white font-bold">leadership, collaboration, and resilience</span>.
               </p>
             </motion.div>
@@ -71,7 +71,7 @@ export const AboutMe: React.FC = () => {
             className="relative pl-8 md:pl-12 py-4"
           >
             <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/40" />
-            <p className="text-lg md:text-xl font-medium text-muted-foreground leading-relaxed max-w-4xl">
+            <p className="text-base md:text-lg font-medium text-muted-foreground leading-relaxed max-w-4xl">
               This combination of technical skill and real-world experience informs my approach to creating digital solutions that are not only robust and elegant but also <span className="text-accent font-bold">drive momentum</span>, foster collaboration, and generate meaningful impact.
             </p>
           </motion.div>

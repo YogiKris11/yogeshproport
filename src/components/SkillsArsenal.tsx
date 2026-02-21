@@ -63,12 +63,14 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Recalibrated for 7 skills: -400% provides a tight reveal with no trailing black screen
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-400%"]);
+  // Recalibrated for 7 skills on 14-inch laptop:
+  // -360% ensures the last skill card (UI/UX) stays docked on screen 
+  // exactly as the scroll reaches 100%, preventing the black screen dead zone.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-360%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[250vh] relative bg-black">
+    <div ref={containerRef} className="h-[180vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
@@ -77,7 +79,7 @@ export const SkillsArsenal: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+            <h2 className="text-xl md:text-2xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
               Technical <br /> <span className="text-accent">Arsenal</span>
             </h2>
           </motion.div>
@@ -100,7 +102,7 @@ export const SkillsArsenal: React.FC = () => {
           {skills.map((skill, idx) => (
             <motion.div
               key={skill.name}
-              className="relative w-[85vw] md:w-[500px] h-[55vh] flex-shrink-0 group"
+              className="relative w-[85vw] md:w-[450px] h-[50vh] flex-shrink-0 group"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="absolute -top-12 -left-6 text-7xl font-black text-white/[0.03] select-none pointer-events-none group-hover:text-accent/[0.08] transition-colors duration-700 font-headline">
@@ -115,16 +117,16 @@ export const SkillsArsenal: React.FC = () => {
                   <div className="mb-8 p-4 w-fit rounded-2xl bg-white/5 border border-white/5 text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-black transition-all duration-500">
                     {skill.icon}
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black font-headline tracking-tighter uppercase mb-4 text-white">
+                  <h3 className="text-2xl md:text-3xl font-black font-headline tracking-tighter uppercase mb-4 text-white">
                     {skill.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed font-medium mb-8">
+                  <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-medium mb-8">
                     {skill.description}
                   </p>
                   
                   <div className="flex flex-wrap gap-2">
                     {skill.tech.map(t => (
-                      <span key={t} className="text-[9px] font-mono uppercase tracking-widest px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/40">
+                      <span key={t} className="text-[8px] font-mono uppercase tracking-widest px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/40">
                         {t}
                       </span>
                     ))}
@@ -153,7 +155,7 @@ export const SkillsArsenal: React.FC = () => {
         <div className="absolute bottom-10 left-0 pointer-events-none select-none overflow-hidden w-full opacity-[0.02]">
           <motion.span 
             style={{ x: useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]) }}
-            className="text-[15vw] font-black text-white font-headline whitespace-nowrap leading-none block"
+            className="text-[10vw] font-black text-white font-headline whitespace-nowrap leading-none block"
           >
             CORE_ARCHITECTURE_LOGIC
           </motion.span>

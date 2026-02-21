@@ -18,8 +18,10 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Recalibrated for 5 projects: -260% ensures the last card stays in frame until the very end
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-260%"]);
+  // Recalibrated for 5 projects on 14-inch laptop: 
+  // -220% ensures the last card (Saaf Dilli) is perfectly centered/visible 
+  // as the scroll hits 100%, avoiding the "black screen" overshoot.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-220%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -36,18 +38,18 @@ export default function Home() {
           YK<span className="text-primary">.</span>SYS
         </div>
         <div className="hidden md:flex gap-12 text-xs font-mono uppercase tracking-[0.4em] font-bold text-white/50">
-          <a href="#about" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Identity</a>
+          <a href="#essence" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Essence</a>
           <a href="#arsenal" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Arsenal</a>
           <a href="#projects" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Works</a>
           <a href="#contact" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Contact</a>
         </div>
       </nav>
 
-      <section id="hero" className="scroll-section relative h-[400vh]">
+      <section id="hero" className="scroll-section relative h-[250vh]">
         <HeroCanvasAnimation />
       </section>
 
-      <section id="about" className="scroll-section relative h-[400vh]">
+      <section id="essence" className="scroll-section relative h-[250vh]">
         <AboutMe />
       </section>
 
@@ -55,7 +57,8 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[300vh] bg-black">
+      {/* Tightened runway to 220vh for 14-inch screens to avoid dead scrolls */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[220vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
@@ -64,16 +67,16 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-xl md:text-2xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
             
             <div className="hidden md:block text-right mb-4">
-              <p className="text-muted-foreground font-mono text-xs uppercase tracking-[0.5em] mb-2">Systems Deployment</p>
+              <p className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.5em] mb-2">Systems Deployment</p>
               <div className="flex gap-2 justify-end">
                 <motion.div 
-                  className="h-[2px] bg-primary" 
+                  className="h-[1px] bg-primary" 
                   style={{ width: useTransform(scrollYProgress, [0, 1], ["0px", "100px"]) }}
                 />
               </div>
@@ -91,8 +94,8 @@ export default function Home() {
 
           <div className="absolute bottom-10 right-0 pointer-events-none select-none overflow-hidden w-full">
             <motion.span 
-              style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-60%"]) }}
-              className="text-[20vw] font-black text-white/[0.01] font-headline whitespace-nowrap leading-none block"
+              style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-40%"]) }}
+              className="text-[15vw] font-black text-white/[0.01] font-headline whitespace-nowrap leading-none block"
             >
               ENGINEERING INTELLIGENCE
             </motion.span>
