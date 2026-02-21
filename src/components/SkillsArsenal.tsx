@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef } from 'react';
@@ -63,13 +64,12 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Precision mapped to 520% to ensure the 7th card "docks" at scroll end without black space.
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-520%"]);
-  // Mechanical spring feel for a world-class experience.
+  // Precision docked at -410% for 7 skills to ensure the last one docks perfectly at 100% scroll.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-410%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[600vh] relative bg-black">
+    <div ref={containerRef} className="h-[500vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">

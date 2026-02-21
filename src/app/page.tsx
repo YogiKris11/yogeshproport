@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef } from 'react';
@@ -18,9 +19,8 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Precision mapped to -300% for 5 projects to ensure the last one docks perfectly at scroll end.
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-300%"]);
-  // Heavier spring settings for a more "mechanical" and smooth feel
+  // Precision docked at -265% for 5 projects to ensure the last one stays on screen at 100% scroll.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-265%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -50,8 +50,7 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Synchronized runway to ensure the unstick happens exactly after the last project */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[500vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[450vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
