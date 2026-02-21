@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { HeroCanvasAnimation } from '@/components/HeroCanvasAnimation';
+import { AboutMe } from '@/components/AboutMe';
 import { ProjectCard } from '@/components/ProjectCard';
 import { EngineeringPhilosophy } from '@/components/EngineeringPhilosophy';
 import { TechStackGrid } from '@/components/TechStackGrid';
@@ -22,6 +23,7 @@ export default function Home() {
           YK<span className="text-electric-blue">.</span>SYS
         </div>
         <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest font-semibold">
+          <a href="#about" className="hover:text-electric-blue transition-colors">About</a>
           <a href="#projects" className="hover:text-electric-blue transition-colors">Projects</a>
           <a href="#philosophy" className="hover:text-electric-blue transition-colors">Philosophy</a>
           <a href="#tech" className="hover:text-electric-blue transition-colors">Stack</a>
@@ -30,6 +32,10 @@ export default function Home() {
       </nav>
 
       <HeroCanvasAnimation />
+
+      <section id="about">
+        <AboutMe />
+      </section>
 
       <section id="projects" className="py-24 px-6 relative z-10 bg-bg-primary">
         <div className="max-w-7xl mx-auto">
