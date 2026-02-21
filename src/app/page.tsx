@@ -19,8 +19,8 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // For 4 projects, we map from 0.1 to 0.9 of the pinned runway.
-  // We want the last card to be centered. With 4 cards, we translate by 300% (plus centering padding)
+  // For 5 projects, we want to slide from 0% to -400%
+  // This ensures that at the end of the scroll runway, the last card is fully in view.
   const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-400%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   

@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
-import { Github, Globe, ArrowRight, Cpu, Code2, Database, Zap, Activity, Film, Wind } from 'lucide-react';
+import { Github, Globe, ArrowRight, Cpu, Code2, Database, Zap, Activity, Film, Wind, Network } from 'lucide-react';
 import { Project } from '@/app/data/projects';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -21,6 +21,7 @@ interface ProjectCardProps {
 const SchematicVisual = ({ id }: { id: string }) => {
   const getIcon = () => {
     switch (id) {
+      case 'neuro-link': return <Network className="w-20 h-20 text-primary" />;
       case 'breathe-track-pro': return <Activity className="w-20 h-20 text-primary" />;
       case 'bill-split-pro': return <Database className="w-20 h-20 text-accent" />;
       case 'my-movie-site': return <Film className="w-20 h-20 text-primary" />;
@@ -203,10 +204,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                           <span className="font-bold text-xs uppercase tracking-[0.2em]">Repository</span>
                         </a>
                       )}
-                      <a href={project.live || "#"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary border border-primary/20 p-5 rounded-2xl transition-all group">
-                        <Globe className="w-5 h-5 group-hover:text-white transition-colors" />
-                        <span className="font-bold text-xs uppercase tracking-[0.2em]">Access System</span>
-                      </a>
+                      {project.live && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary border border-primary/20 p-5 rounded-2xl transition-all group">
+                          <Globe className="w-5 h-5 group-hover:text-white transition-colors" />
+                          <span className="font-bold text-xs uppercase tracking-[0.2em]">Access System</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
