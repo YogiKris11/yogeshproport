@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef } from 'react';
@@ -63,12 +64,13 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Mapped to cover all 7 cards precisely across a 350vh runway
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-580%"]);
+  // Adjusted translation and range to eliminate empty scroll on 14" laptops
+  // For 7 cards, moving about -520% ensures the last card is fully visible without extra runway
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-520%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[350vh] relative bg-black">
+    <div ref={containerRef} className="h-[280vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         {/* Section Header */}
@@ -78,7 +80,7 @@ export const SkillsArsenal: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
               Technical <br /> <span className="text-accent">Arsenal</span>
             </h2>
           </motion.div>
