@@ -5,10 +5,7 @@ import React from 'react';
 import { HeroCanvasAnimation } from '@/components/HeroCanvasAnimation';
 import { AboutMe } from '@/components/AboutMe';
 import { ProjectCard } from '@/components/ProjectCard';
-import { EngineeringPhilosophy } from '@/components/EngineeringPhilosophy';
-import { TechStackGrid } from '@/components/TechStackGrid';
 import { FinalCTA } from '@/components/FinalCTA';
-import { DescriptionGenerator } from '@/components/DescriptionGenerator';
 import { SkillsArsenal } from '@/components/SkillsArsenal';
 import { projects } from '@/app/data/projects';
 import { motion } from 'framer-motion';
@@ -27,7 +24,6 @@ export default function Home() {
           <a href="#about" className="hover:text-electric-blue transition-colors">About</a>
           <a href="#arsenal" className="hover:text-electric-blue transition-colors">Arsenal</a>
           <a href="#projects" className="hover:text-electric-blue transition-colors">Projects</a>
-          <a href="#philosophy" className="hover:text-electric-blue transition-colors">Philosophy</a>
           <a href="#contact" className="hover:text-electric-blue transition-colors">Contact</a>
         </div>
       </nav>
@@ -71,17 +67,7 @@ export default function Home() {
               <ProjectCard key={project.id} project={project} index={idx} />
             ))}
           </div>
-
-          <DescriptionGenerator />
         </div>
-      </section>
-
-      <section id="philosophy">
-        <EngineeringPhilosophy />
-      </section>
-
-      <section id="tech">
-        <TechStackGrid />
       </section>
 
       <section id="contact">
