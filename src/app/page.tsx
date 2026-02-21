@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef } from 'react';
@@ -32,8 +33,8 @@ export default function Home() {
       />
 
       <nav className="fixed top-0 left-0 w-full z-[100] p-8 flex justify-between items-center mix-blend-difference">
-        <div className="text-lg md:text-xl font-black font-headline uppercase tracking-tighter text-white/70">
-          Yogesh's <span className="text-primary/70">Essence</span>
+        <div className="text-xs md:text-sm font-black font-headline uppercase tracking-tighter text-white/50">
+          Yogesh's <span className="text-primary/50">Essence</span>
         </div>
       </nav>
 
