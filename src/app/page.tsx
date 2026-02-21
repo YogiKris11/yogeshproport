@@ -24,7 +24,7 @@ export default function Home() {
   // We map from start (0.1) to near end (0.9) of the pinned runway.
   // Card 1 starts at 0. Each card + gap is roughly 750px. 
   // For 5 projects, we need to slide roughly -250% to show all of them.
-  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-260%"]);
+  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-450%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
