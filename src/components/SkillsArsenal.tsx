@@ -63,13 +63,13 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Precision recalibrated for 7 skills on 14-inch laptop.
-  // -580% ensures the 7th skill card is fully docked at the end of the scroll track.
+  // Massive runway (600vh) for 7 skills to ensure non-sensitive, world-class scroll feel.
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-580%"]);
-  const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
+  // Slower, smoother spring for a more high-end experience.
+  const smoothX = useSpring(xTranslate, { stiffness: 40, damping: 20, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[140vh] relative bg-black">
+    <div ref={containerRef} className="h-[600vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">

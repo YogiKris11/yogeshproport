@@ -18,11 +18,11 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Precision calibrated for 14-inch laptop (5 projects)
-  // -340% ensures the last project (Saaf Dilli) is perfectly positioned
-  // exactly as the scrollYProgress hits 1, releasing the pin immediately.
+  // Expanded runway to 500vh for a deliberate, premium feel
+  // Mapping adjusted so the last project finishes exactly at scroll end
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-340%"]);
-  const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
+  // Heavier spring settings for a more "mechanical" and smooth feel
+  const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -51,8 +51,8 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Tightened runway to 200vh to ensure instantaneous unsticking after the last project */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[200vh] bg-black">
+      {/* Increased runway to 500vh to slow down scroll sensitivity significantly */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[500vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
