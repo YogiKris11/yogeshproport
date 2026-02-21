@@ -18,9 +18,8 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Expanded runway to 500vh for a deliberate, premium feel
-  // Mapping adjusted so the last project finishes exactly at scroll end
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-340%"]);
+  // Precision mapped to -300% for 5 projects to ensure the last one docks perfectly at scroll end.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-300%"]);
   // Heavier spring settings for a more "mechanical" and smooth feel
   const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
   
@@ -43,7 +42,7 @@ export default function Home() {
         <HeroCanvasAnimation />
       </section>
 
-      <section id="essence" className="scroll-section relative h-[250vh]">
+      <section id="identity" className="scroll-section relative h-[250vh]">
         <AboutMe />
       </section>
 
@@ -51,7 +50,7 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Increased runway to 500vh to slow down scroll sensitivity significantly */}
+      {/* Synchronized runway to ensure the unstick happens exactly after the last project */}
       <section id="projects" ref={scrollRef} className="scroll-section relative h-[500vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           

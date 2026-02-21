@@ -63,10 +63,10 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Massive runway (600vh) for 7 skills to ensure non-sensitive, world-class scroll feel.
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-580%"]);
-  // Slower, smoother spring for a more high-end experience.
-  const smoothX = useSpring(xTranslate, { stiffness: 40, damping: 20, restDelta: 0.001 });
+  // Precision mapped to 520% to ensure the 7th card "docks" at scroll end without black space.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-520%"]);
+  // Mechanical spring feel for a world-class experience.
+  const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="h-[600vh] relative bg-black">
