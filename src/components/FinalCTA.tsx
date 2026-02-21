@@ -2,21 +2,11 @@
 "use client";
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export const FinalCTA: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end end"]
-  });
-
-  // Animated pattern lines
-  const line1X = useTransform(scrollYProgress, [0, 1], ["-100%", "0%"]);
-  const line2X = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
-  const line3X = useTransform(scrollYProgress, [0, 1], ["-50%", "50%"]);
-  const lineRotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
   const socialLinks = [
     {
@@ -40,7 +30,7 @@ export const FinalCTA: React.FC = () => {
   ];
 
   return (
-    <section ref={containerRef} className="py-32 px-6 relative overflow-hidden bg-bg-primary">
+    <section ref={containerRef} className="py-24 md:py-32 px-6 relative overflow-hidden bg-bg-primary">
       {/* Dynamic background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
       
@@ -55,7 +45,7 @@ export const FinalCTA: React.FC = () => {
             Let’s Build <br /> <span className="text-primary">Intelligent</span> Systems.
           </h2>
           
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-24">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12">
             {socialLinks.map((link, idx) => (
               <motion.a
                 key={link.name}
@@ -79,30 +69,9 @@ export const FinalCTA: React.FC = () => {
             ))}
           </div>
         </motion.div>
-
-        {/* Playful Scroll Patterns Sub-Section */}
-        <div className="relative h-64 w-full flex items-center justify-center">
-          <div className="absolute inset-0 flex flex-col justify-center gap-12 pointer-events-none opacity-40">
-            <motion.div 
-              style={{ x: line1X, rotate: lineRotate }}
-              className="w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
-            />
-            <motion.div 
-              style={{ x: line2X, rotate: -lineRotate }}
-              className="w-full h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
-            />
-            <motion.div 
-              style={{ x: line3X, scaleX: useTransform(scrollYProgress, [0, 1], [0.5, 1.5]) }}
-              className="w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
-            />
-          </div>
-          <div className="text-[10px] font-mono uppercase tracking-[1em] text-white/10 select-none">
-            ENGINEERING_MOMENTUM
-          </div>
-        </div>
       </div>
 
-      <div className="mt-32 border-t border-border-subtle pt-12 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-muted-foreground text-[10px] font-mono uppercase tracking-widest">
+      <div className="mt-24 border-t border-border-subtle pt-12 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-muted-foreground text-[10px] font-mono uppercase tracking-widest">
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <p>© 2026 Yogesh Krishna • Systems Architect</p>
