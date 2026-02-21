@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -49,10 +50,10 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4"
               >
-                Featured <span className="text-electric-blue">Systems</span>
+                Things I've <span className="text-electric-blue">Built</span>
               </motion.h2>
               <p className="text-muted-foreground font-mono uppercase tracking-widest max-w-xl">
-                High-performance architectures and AI-driven applications at scale.
+                A selection of applications focused on solving real-world problems with elegant code.
               </p>
             </div>
             <motion.div

@@ -55,7 +55,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           </div>
 
           <button className="flex items-center gap-2 text-sm font-bold text-electric-blue hover:text-neural-cyan transition-colors uppercase tracking-widest">
-            View Case Study <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            View More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
