@@ -10,7 +10,6 @@ export const AboutMe: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Reveal animations for different blocks
   const opacity1 = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
   const y1 = useTransform(scrollYProgress, [0, 0.15], [50, 0]);
 
@@ -29,12 +28,10 @@ export const AboutMe: React.FC = () => {
     <div ref={targetRef} className="h-[400vh] w-full relative">
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-24 bg-background">
         
-        {/* Background Decorative Identity Text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
           <h2 className="text-[25vw] font-black uppercase leading-none font-headline">IDENTITY</h2>
         </div>
 
-        {/* Sidebar Vertical Progress */}
         <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/5 hidden xl:block">
           <motion.div 
             style={{ scaleY, originY: 0 }} 
@@ -43,21 +40,18 @@ export const AboutMe: React.FC = () => {
         </div>
 
         <div className="max-w-5xl w-full text-left relative z-10">
-          {/* Label */}
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-8">
             <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.4em] text-primary font-bold">
               A Bit About Me
             </span>
           </motion.div>
 
-          {/* Main Heading - Refined font size */}
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-16">
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-medium tracking-tight font-headline leading-[1.1] text-white">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-medium tracking-tight font-headline leading-[1.2] text-white">
               I am a technology professional focused on developing <span className="text-primary font-bold">intelligent applications</span> and crafting seamless digital experiences.
             </h2>
           </motion.div>
 
-          {/* Body Paragraphs Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-16">
             <motion.div style={{ opacity: opacity2, y: y2 }}>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -72,7 +66,6 @@ export const AboutMe: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Featured Closing Block */}
           <motion.div 
             style={{ opacity: opacity4, y: y4 }} 
             className="relative pl-8 md:pl-12 py-4"

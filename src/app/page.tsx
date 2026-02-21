@@ -18,7 +18,7 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Tightened translation for 5 projects to match 300vh runway
+  // Tightened runway to 270vh and translation mapping to ensure instant section release
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-330%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
@@ -26,13 +26,11 @@ export default function Home() {
 
   return (
     <main className="relative bg-background">
-      {/* Global Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[1000] origin-left"
         style={{ scaleX: progressBarWidth }}
       />
 
-      {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-[100] p-8 flex justify-between items-center mix-blend-difference">
         <div className="text-2xl font-black font-headline uppercase tracking-tighter text-white">
           YK<span className="text-primary">.</span>SYS
@@ -45,33 +43,28 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Animation Track */}
       <section id="hero" className="scroll-section relative h-[400vh]">
         <HeroCanvasAnimation />
       </section>
 
-      {/* Identity Track */}
       <section id="about" className="scroll-section relative h-[400vh]">
         <AboutMe />
       </section>
 
-      {/* Skills Arsenal Track - Horizontal */}
       <section id="arsenal" className="scroll-section relative">
         <SkillsArsenal />
       </section>
 
-      {/* Projects Horizontal Track - Refined runway to 300vh for 14" screens */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[300vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[270vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
-          {/* Section Heading Overlay */}
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
@@ -87,7 +80,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Horizontal Scroll Area */}
           <motion.div 
             style={{ x: smoothX }} 
             className="flex gap-20 md:gap-40 px-8 md:px-[15vw] items-center whitespace-nowrap"
@@ -97,7 +89,6 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Background Text Parallax */}
           <div className="absolute bottom-10 right-0 pointer-events-none select-none overflow-hidden w-full">
             <motion.span 
               style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-60%"]) }}
@@ -109,12 +100,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final Contact Track */}
       <section id="contact" className="scroll-section relative z-10">
         <FinalCTA />
       </section>
 
-      {/* Global Grain Filter */}
       <div className="fixed inset-0 pointer-events-none z-[999] opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </main>
   );

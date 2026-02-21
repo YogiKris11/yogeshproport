@@ -63,22 +63,21 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Tightened runway to 200vh and translation to -510% for 7 cards on 14" displays
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-510%"]);
+  // Tightened runway to 170vh to remove dead air after the 7th skill
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-480%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[200vh] relative bg-black">
+    <div ref={containerRef} className="h-[170vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
-        {/* Section Header */}
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
               Technical <br /> <span className="text-accent">Arsenal</span>
             </h2>
           </motion.div>
@@ -94,7 +93,6 @@ export const SkillsArsenal: React.FC = () => {
           </div>
         </div>
 
-        {/* Horizontal Track */}
         <motion.div 
           style={{ x: smoothX }} 
           className="flex gap-12 md:gap-24 px-8 md:px-[20vw] items-center whitespace-nowrap"
@@ -111,7 +109,6 @@ export const SkillsArsenal: React.FC = () => {
 
               <div className="h-full w-full bg-card/40 backdrop-blur-3xl rounded-[2rem] border border-white/5 p-8 md:p-12 flex flex-col justify-between hover:border-accent/40 transition-all duration-700 shadow-2xl overflow-hidden whitespace-normal">
                 
-                {/* Background Glow */}
                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-accent/5 rounded-full blur-[80px] group-hover:bg-accent/10 transition-all duration-1000" />
 
                 <div>
@@ -153,7 +150,6 @@ export const SkillsArsenal: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Background Decorative Text */}
         <div className="absolute bottom-10 left-0 pointer-events-none select-none overflow-hidden w-full opacity-[0.02]">
           <motion.span 
             style={{ x: useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]) }}
