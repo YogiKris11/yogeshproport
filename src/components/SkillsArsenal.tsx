@@ -64,7 +64,7 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Precision docked at -410% for 7 skills to ensure the last one docks perfectly at 100% scroll.
+  // Precision docked at -410% for 7 skills to ensure the last one docks perfectly at 100% scroll on a 14-inch display.
   const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-410%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 50, damping: 25, restDelta: 0.001 });
 
@@ -101,7 +101,7 @@ export const SkillsArsenal: React.FC = () => {
           {skills.map((skill, idx) => (
             <motion.div
               key={skill.name}
-              className="relative w-[85vw] md:w-[450px] h-[50vh] flex-shrink-0 group"
+              className="relative w-[85vw] md:w-[450px] h-[65vh] flex-shrink-0 group"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="absolute -top-12 -left-6 text-7xl font-black text-white/[0.03] select-none pointer-events-none group-hover:text-accent/[0.08] transition-colors duration-700 font-headline">
