@@ -14,21 +14,21 @@ export default function Home() {
   const featuredProjects = projects.filter(p => p.featured);
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // High-precision scroll tracking for the horizontal projects section
+  // Track vertical scroll progress for the projects track
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ["start start", "end end"]
   });
 
-  // Mapping the horizontal movement to cover the entire width of cards
-  // We subtract roughly the viewport width from the total track width
-  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-80%"]);
+  // Calculate horizontal translation based on vertical scroll
+  // We subtract some viewport width to prevent over-scrolling the last card
+  const xTranslate = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-75%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <main className="relative bg-background overflow-x-hidden">
+    <main className="relative bg-background">
       {/* Global Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[1000] origin-left"
@@ -48,23 +48,23 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Animation - Pinned 400vh */}
-      <section id="hero" className="relative h-[400vh]">
+      {/* Hero Animation Track */}
+      <section id="hero" className="scroll-section relative h-[400vh]">
         <HeroCanvasAnimation />
       </section>
 
-      {/* About Section - Pinned 400vh */}
-      <section id="about" className="relative h-[400vh]">
+      {/* Identity Track */}
+      <section id="about" className="scroll-section relative h-[400vh]">
         <AboutMe />
       </section>
 
-      {/* Skills Arsenal - Animated Flow */}
-      <section id="arsenal" className="bg-background relative">
+      {/* Skills Arsenal Track */}
+      <section id="arsenal" className="scroll-section relative h-auto">
         <SkillsArsenal />
       </section>
 
-      {/* Things I've Built - Monolithic Horizontal Scroll 700vh */}
-      <section id="projects" ref={scrollRef} className="relative h-[700vh] bg-black">
+      {/* Projects Horizontal Track */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[700vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
@@ -90,7 +90,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Horizontal Project Track */}
+          {/* Horizontal Scroll Area */}
           <motion.div 
             style={{ x: smoothX }} 
             className="flex gap-20 md:gap-40 px-8 md:px-[25vw] items-center whitespace-nowrap"
@@ -98,9 +98,6 @@ export default function Home() {
             {featuredProjects.map((project, idx) => (
               <ProjectCard key={project.id} project={project} index={idx} />
             ))}
-            
-            {/* End buffer to ensure final card is fully visible */}
-            <div className="w-[10vw] flex-shrink-0" />
           </motion.div>
 
           {/* Background Text Parallax */}
@@ -115,12 +112,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final Contact - Standard Flow */}
-      <section id="contact" className="relative z-10">
+      {/* Final Contact Track */}
+      <section id="contact" className="scroll-section relative z-10">
         <FinalCTA />
       </section>
 
-      {/* Persistent Visual Noise */}
+      {/* Global Grain Filter */}
       <div className="fixed inset-0 pointer-events-none z-[999] opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </main>
   );

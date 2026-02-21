@@ -11,31 +11,30 @@ export const AboutMe: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Text 1: Opacity and Y-offset
+  // Text 1: Appears at start, fades by 25% progress
   const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [0, 1, 1, 0]);
   const y1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [100, 0, 0, -100]);
 
-  // Text 2: Opacity and Y-offset
+  // Text 2: Appears at 35%, fades by 65% progress
   const opacity2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [0, 1, 1, 0]);
   const y2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [100, 0, 0, -100]);
 
-  // Text 3: Opacity and Y-offset
+  // Text 3: Appears at 70%, stays till end
   const opacity3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [0, 1, 1, 1]);
   const y3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [100, 0, 0, 0]);
 
-  // Progress bar for the side
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={targetRef} className="h-full w-full relative">
+    <div ref={targetRef} className="h-full w-full">
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 bg-background">
         
-        {/* Deep background accent */}
+        {/* Background Decorative Identity Text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
           <h2 className="text-[25vw] font-black uppercase leading-none font-headline">IDENTITY</h2>
         </div>
 
-        {/* Side Progress Indicator */}
+        {/* Sidebar Vertical Progress */}
         <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/10 hidden md:block">
           <motion.div 
             style={{ scaleY, originY: 0 }} 
