@@ -11,23 +11,24 @@ export const AboutMe: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Text 1: Appears at start, fades by 25% progress
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [0, 1, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [100, 0, 0, -100]);
+  // Reveal animations for different blocks
+  const opacity1 = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+  const y1 = useTransform(scrollYProgress, [0, 0.15], [50, 0]);
 
-  // Text 2: Appears at 35%, fades by 65% progress
-  const opacity2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [0, 1, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [100, 0, 0, -100]);
+  const opacity2 = useTransform(scrollYProgress, [0.25, 0.4], [0, 1]);
+  const y2 = useTransform(scrollYProgress, [0.25, 0.4], [50, 0]);
 
-  // Text 3: Appears at 70%, stays till end
-  const opacity3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [0, 1, 1, 1]);
-  const y3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [100, 0, 0, 0]);
+  const opacity3 = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
+  const y3 = useTransform(scrollYProgress, [0.45, 0.6], [50, 0]);
+
+  const opacity4 = useTransform(scrollYProgress, [0.7, 0.85], [0, 1]);
+  const y4 = useTransform(scrollYProgress, [0.7, 0.85], [50, 0]);
 
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={targetRef} className="h-full w-full">
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 bg-background">
+    <div ref={targetRef} className="h-[400vh] w-full relative">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-24 bg-background">
         
         {/* Background Decorative Identity Text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
@@ -35,44 +36,51 @@ export const AboutMe: React.FC = () => {
         </div>
 
         {/* Sidebar Vertical Progress */}
-        <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/10 hidden md:block">
+        <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/5 hidden xl:block">
           <motion.div 
             style={{ scaleY, originY: 0 }} 
             className="w-full h-full bg-primary shadow-[0_0_15px_#3B82F6]"
           />
         </div>
 
-        <div className="max-w-4xl w-full text-center relative z-10 h-[60vh]">
-          {/* Paragraph 1 */}
-          <motion.div 
-            style={{ opacity: opacity1, y: y1 }} 
-            className="absolute inset-0 flex flex-col justify-center items-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 font-headline leading-tight">
-              A Bit <span className="text-primary">About Me</span>
+        <div className="max-w-5xl w-full text-left relative z-10">
+          {/* Label */}
+          <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-8">
+            <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.4em] text-primary font-bold">
+              A Bit About Me
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-16">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight font-headline leading-[1.1] text-white">
+              I am a technology professional focused on developing <span className="text-primary font-bold">intelligent applications</span> and crafting seamless digital experiences.
             </h2>
-            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              I am a technology professional focused on developing <span className="text-white">intelligent applications</span> and crafting seamless digital experiences.
-            </p>
           </motion.div>
 
-          {/* Paragraph 2 */}
-          <motion.div 
-            style={{ opacity: opacity2, y: y2 }} 
-            className="absolute inset-0 flex flex-col justify-center items-center"
-          >
-            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              Beyond coding, I draw inspiration from <span className="text-white">strategic thinking</span> and discipline cultivated through sports and fitness.
-            </p>
-          </motion.div>
+          {/* Body Paragraphs Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-16">
+            <motion.div style={{ opacity: opacity2, y: y2 }}>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                Proficient in <span className="text-white font-bold">Python, Flutter, React, Node.js</span>, and system design, I combine technical expertise with analytical problem-solving to deliver efficient, scalable, and well-structured solutions.
+              </p>
+            </motion.div>
 
-          {/* Paragraph 3 */}
+            <motion.div style={{ opacity: opacity3, y: y3 }}>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                Beyond coding, I draw inspiration from strategic thinking and discipline cultivated through sports and fitness, which enhance <span className="text-white font-bold">leadership, collaboration, and resilience</span>.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Featured Closing Block */}
           <motion.div 
-            style={{ opacity: opacity3, y: y3 }} 
-            className="absolute inset-0 flex flex-col justify-center items-center"
+            style={{ opacity: opacity4, y: y4 }} 
+            className="relative pl-8 md:pl-12 py-4"
           >
-            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              I create digital solutions that are not only <span className="text-primary">robust and elegant</span> but also drive momentum and meaningful impact.
+            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/40" />
+            <p className="text-xl md:text-3xl font-medium text-muted-foreground leading-relaxed max-w-4xl">
+              This combination of technical skill and real-world experience informs my approach to creating digital solutions that are not only robust and elegant but also <span className="text-accent font-bold">drive momentum</span>, foster collaboration, and generate meaningful impact.
             </p>
           </motion.div>
         </div>
