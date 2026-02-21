@@ -20,11 +20,10 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // For 5 projects, we need to translate significantly more.
-  // We map from start (0.1) to near end (0.9) of the pinned runway.
-  // Card 1 starts at 0. Each card + gap is roughly 750px. 
-  // For 5 projects, we need to slide roughly -250% to show all of them.
-  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-450%"]);
+  // For 5 projects, we map from 0.1 to 0.9 of the pinned runway.
+  // Card 1 starts at 0. Card 5 ends at -400%. 
+  // We use -500% to ensure the last card is fully exited or the scroll feels balanced.
+  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-520%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -66,7 +65,7 @@ export default function Home() {
       </section>
 
       {/* Projects Horizontal Track */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[800vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[900vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
@@ -105,7 +104,7 @@ export default function Home() {
           {/* Background Text Parallax */}
           <div className="absolute bottom-10 right-0 pointer-events-none select-none overflow-hidden w-full">
             <motion.span 
-              style={{ x: useTransform(scrollYProgress, [0, 1], ["20%", "-80%"]) }}
+              style={{ x: useTransform(scrollYProgress, [0, 1], ["30%", "-90%"]) }}
               className="text-[20vw] font-black text-white/[0.01] font-headline whitespace-nowrap leading-none block"
             >
               ENGINEERING INTELLIGENCE

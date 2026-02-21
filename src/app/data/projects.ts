@@ -1,4 +1,6 @@
 
+import placeholderData from '@/app/lib/placeholder-images.json';
+
 export interface Project {
   id: string;
   title: string;
@@ -9,8 +11,17 @@ export interface Project {
   live?: string;
   featured: boolean;
   image: string;
+  imageHint: string;
   engineeringWins: string[];
 }
+
+const getPlaceholder = (id: string) => {
+  const img = placeholderData.placeholderImages.find(p => p.id === id);
+  return {
+    url: img?.imageUrl || `https://picsum.photos/seed/${id}/1000/800`,
+    hint: img?.imageHint || 'technology'
+  };
+};
 
 export const projects: Project[] = [
   {
@@ -20,7 +31,8 @@ export const projects: Project[] = [
     fullDescription: 'NeuroLink is a next-generation knowledge management system that uses Large Language Models to automatically categorize, link, and expand upon your notes. It features a graph-based visualization of idea clusters and provides intelligent summaries of complex document hierarchies.',
     techStack: ['Next.js', 'Genkit', 'Firebase', 'Tailwind'],
     featured: true,
-    image: 'https://picsum.photos/seed/neurolink/1000/800',
+    image: getPlaceholder('project-neurolink').url,
+    imageHint: getPlaceholder('project-neurolink').hint,
     engineeringWins: [
       'Implemented recursive vector embedding for hierarchical idea linking.',
       'Optimized real-time graph rendering for up to 500 nodes at 60fps.',
@@ -34,7 +46,8 @@ export const projects: Project[] = [
     fullDescription: 'BillSplit Pro takes the headache out of group finances. Using a custom graph-balancing algorithm, it minimizes the number of transactions required to settle debts among large groups. It supports multi-currency, receipt scanning (OCR), and real-time expense syncing.',
     techStack: ['React', 'Node.js', 'PostgreSQL', 'Cloud Vision'],
     featured: true,
-    image: 'https://picsum.photos/seed/billsplit/1000/800',
+    image: getPlaceholder('project-billsplit').url,
+    imageHint: getPlaceholder('project-billsplit').hint,
     engineeringWins: [
       'Engineered a debt-minimization algorithm using graph theory.',
       'Integrated Google Cloud Vision for high-accuracy receipt OCR.',
@@ -48,7 +61,8 @@ export const projects: Project[] = [
     fullDescription: 'A comprehensive health suite designed for respiratory care. It integrates with wearable sensors to provide real-time feedback on breathing patterns, lung capacity estimations, and environmental trigger alerts based on localized air quality data.',
     techStack: ['Flutter', 'Firebase', 'TensorFlow Lite', 'Dart'],
     featured: true,
-    image: 'https://picsum.photos/seed/breath/1000/800',
+    image: getPlaceholder('project-breathtrack').url,
+    imageHint: getPlaceholder('project-breathtrack').hint,
     engineeringWins: [
       'Developed on-device ML models for real-time respiratory pattern analysis.',
       'Built a low-latency Bluetooth bridge for medical sensor integration.',
@@ -62,7 +76,8 @@ export const projects: Project[] = [
     fullDescription: 'Stress-Buster is an experimental WebGL experience that combines rhythmic breathing exercises with generative audio-visuals. It uses biofeedback to dynamically adjust the game complexity to maximize relaxation.',
     techStack: ['Three.js', 'React', 'Web Audio API', 'Framer Motion'],
     featured: true,
-    image: 'https://picsum.photos/seed/stressbuster/1000/800',
+    image: getPlaceholder('project-game').url,
+    imageHint: getPlaceholder('project-game').hint,
     engineeringWins: [
       'Custom shader development for generative, reactive visual environments.',
       'Engineered an adaptive audio engine that syncs with user heart rate.',
@@ -76,7 +91,8 @@ export const projects: Project[] = [
     fullDescription: 'Saaf Dilli (Clean Delhi) is a community-driven environmental monitoring tool. It aggregates data from multiple API sources and hyper-local sensors to provide neighborhood-level air quality indices and health recommendations.',
     techStack: ['Next.js', 'Tailwind', 'OpenWeather API', 'Leaflet'],
     featured: true,
-    image: 'https://picsum.photos/seed/saaf/1000/800',
+    image: getPlaceholder('project-saafdilli').url,
+    imageHint: getPlaceholder('project-saafdilli').hint,
     engineeringWins: [
       'Aggregated real-time data from 50+ localized sensor stations.',
       'Built a dynamic heatmap visualization using Leaflet.js.',

@@ -4,31 +4,31 @@
     {
       "id": "project-neurolink",
       "description": "Neural interface and abstract AI nodes",
-      "imageUrl": "https://picsum.photos/seed/neurolink/1000/800",
+      "imageUrl": "https://picsum.photos/seed/ai-neural/1000/800",
       "imageHint": "neural network"
     },
     {
       "id": "project-billsplit",
       "description": "Financial abstract data visualization",
-      "imageUrl": "https://picsum.photos/seed/billsplit/1000/800",
+      "imageUrl": "https://picsum.photos/seed/fintech-abstract/1000/800",
       "imageHint": "finance abstract"
     },
     {
       "id": "project-breathtrack",
       "description": "Medical wellness abstract waves",
-      "imageUrl": "https://picsum.photos/seed/breath/1000/800",
+      "imageUrl": "https://picsum.photos/seed/medical-tech/1000/800",
       "imageHint": "medical abstract"
     },
     {
       "id": "project-game",
       "description": "Immersive gaming environment neon",
-      "imageUrl": "https://picsum.photos/seed/stressbuster/1000/800",
+      "imageUrl": "https://picsum.photos/seed/neon-gaming/1000/800",
       "imageHint": "neon gaming"
     },
     {
       "id": "project-saafdilli",
       "description": "Cityscape with environmental data overlay",
-      "imageUrl": "https://picsum.photos/seed/saaf/1000/800",
+      "imageUrl": "https://picsum.photos/seed/smart-city/1000/800",
       "imageHint": "city environment"
     }
   ]
