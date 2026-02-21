@@ -29,7 +29,7 @@ export const AboutMe: React.FC = () => {
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-24 bg-background">
         
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
-          <h2 className="text-[20vw] font-black uppercase leading-none font-headline">ESSENCE</h2>
+          <h2 className="text-[20vw] font-black uppercase leading-none font-headline">IDENTITY</h2>
         </div>
 
         <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/5 hidden xl:block">
@@ -42,7 +42,7 @@ export const AboutMe: React.FC = () => {
         <div className="max-w-5xl w-full text-left relative z-10">
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-8">
             <span className="text-[10px] md:text-sm font-headline font-bold uppercase tracking-[0.4em] text-primary">
-              Yogesh's Essence
+              Identity
             </span>
           </motion.div>
 
