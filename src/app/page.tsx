@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useRef } from 'react';
@@ -20,10 +19,9 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // For 5 projects, we map from 0.1 to 0.9 of the pinned runway.
-  // Card 1 starts at 0. Card 5 ends at -400%. 
-  // We use -500% to ensure the last card is fully exited or the scroll feels balanced.
-  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-520%"]);
+  // For 4 projects, we map from 0.1 to 0.9 of the pinned runway.
+  // We want the last card to be centered. With 4 cards, we translate by 300% (plus centering padding)
+  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-400%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -81,7 +79,7 @@ export default function Home() {
             </motion.div>
             
             <div className="hidden md:block text-right mb-4">
-              <p className="text-muted-foreground font-mono text-xs uppercase tracking-[0.5em] mb-2">Engineering Gallery</p>
+              <p className="text-muted-foreground font-mono text-xs uppercase tracking-[0.5em] mb-2">Systems Deployment</p>
               <div className="flex gap-2 justify-end">
                 <motion.div 
                   className="h-[2px] bg-primary" 
