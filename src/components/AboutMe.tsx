@@ -51,9 +51,9 @@ export const AboutMe: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Main Heading */}
+          {/* Main Heading - Slightly reduced font size as requested */}
           <motion.div style={{ opacity: opacity1, y: y1 }} className="mb-16">
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight font-headline leading-[1.1] text-white">
+            <h2 className="text-2xl md:text-4xl lg:text-6xl font-medium tracking-tight font-headline leading-[1.1] text-white">
               I am a technology professional focused on developing <span className="text-primary font-bold">intelligent applications</span> and crafting seamless digital experiences.
             </h2>
           </motion.div>
