@@ -1,11 +1,18 @@
 
 "use client";
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { Github, ExternalLink, ArrowRight, Layers } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
+import { Github, ExternalLink, ArrowRight, Layers, X, Cpu, Globe, Code2 } from 'lucide-react';
 import { Project } from '@/app/data/projects';
 import { Badge } from '@/components/ui/badge';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from 'next/image';
 
 interface ProjectCardProps {
@@ -106,13 +113,88 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               )}
             </div>
 
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-4 bg-electric-blue/10 hover:bg-electric-blue text-electric-blue hover:text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border border-electric-blue/20"
-            >
-              View Case Study
-              <ArrowRight className="w-4 h-4" />
-            </motion.button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-4 bg-electric-blue/10 hover:bg-electric-blue text-electric-blue hover:text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border border-electric-blue/20"
+                >
+                  View More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-3xl border-white/10 text-foreground overflow-y-auto max-h-[90vh]">
+                <DialogHeader>
+                  <DialogTitle className="text-5xl font-black font-headline tracking-tighter mb-4 text-white">
+                    {project.title}
+                  </DialogTitle>
+                </DialogHeader>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+                  <div className="space-y-8">
+                    <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10">
+                      <Image 
+                        src={project.image} 
+                        alt={project.title} 
+                        fill 
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.map(tech => (
+                        <Badge key={tech} variant="secondary" className="bg-white/5 text-white border-white/10 uppercase tracking-widest text-[10px] px-3 py-1">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h4 className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-[0.3em] mb-4">
+                        <Cpu className="w-4 h-4" />
+                        System Architecture
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed text-lg">
+                        {project.fullDescription}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-6">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 p-4 rounded-2xl transition-all group">
+                        <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
+                        <span className="font-bold text-xs uppercase tracking-widest">Source Code</span>
+                      </a>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary border border-primary/20 p-4 rounded-2xl transition-all group">
+                        <Globe className="w-5 h-5 group-hover:text-white transition-colors" />
+                        <span className="font-bold text-xs uppercase tracking-widest">Live Demo</span>
+                      </a>
+                    </div>
+
+                    <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl">
+                      <h4 className="flex items-center gap-2 text-white font-mono text-xs uppercase tracking-[0.3em] mb-4">
+                        <Code2 className="w-4 h-4" />
+                        Key Engineering Wins
+                      </h4>
+                      <ul className="space-y-3 text-sm text-muted-foreground">
+                        <li className="flex items-center gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          Optimized rendering pipeline for 60fps interaction.
+                        </li>
+                        <li className="flex items-center gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          Scalable backend with distributed cache support.
+                        </li>
+                        <li className="flex items-center gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          End-to-end type safety across the entire stack.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 

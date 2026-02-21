@@ -20,9 +20,10 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Calculate horizontal translation based on vertical scroll
-  // We subtract some viewport width to prevent over-scrolling the last card
-  const xTranslate = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-75%"]);
+  // For 5 projects, we need to translate enough to show the last one.
+  // We map from 0.05 (start showing) to 0.95 (reached the end).
+  // A translation of -82% is roughly correct for 5 large cards with gaps.
+  const xTranslate = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-82%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
