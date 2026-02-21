@@ -56,8 +56,8 @@ export default function Home() {
         <AboutMe />
       </section>
 
-      {/* Skills Arsenal Track */}
-      <section id="arsenal" className="scroll-section relative h-auto">
+      {/* Skills Arsenal Track - Updated to relative track height */}
+      <section id="arsenal" className="scroll-section relative">
         <SkillsArsenal />
       </section>
 
