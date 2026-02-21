@@ -19,9 +19,9 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // For 5 projects, we want to slide from 0% to -400%
-  // This ensures that at the end of the scroll runway, the last card is fully in view.
-  const xTranslate = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-400%"]);
+  // Adjusted runway to 600vh to reduce empty scrolling on smaller screens
+  // Mapping the horizontal movement across 90% of the vertical scroll span
+  const xTranslate = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-400%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 25, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -63,7 +63,7 @@ export default function Home() {
       </section>
 
       {/* Projects Horizontal Track */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[900vh] bg-black">
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[600vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           {/* Section Heading Overlay */}
@@ -73,7 +73,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-5xl md:text-7xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
