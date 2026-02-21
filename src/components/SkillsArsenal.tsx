@@ -63,14 +63,13 @@ export const SkillsArsenal: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Recalibrated for 7 skills on 14-inch laptop:
-  // -360% ensures the last skill card (UI/UX) stays docked on screen 
-  // exactly as the scroll reaches 100%, preventing the black screen dead zone.
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-360%"]);
+  // Precision recalibrated for 7 skills on 14-inch laptop.
+  // -580% ensures the 7th skill card is fully docked at the end of the scroll track.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-580%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="h-[180vh] relative bg-black">
+    <div ref={containerRef} className="h-[140vh] relative bg-black">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         
         <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
@@ -79,7 +78,7 @@ export const SkillsArsenal: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-xl md:text-2xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+            <h2 className="text-lg md:text-xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
               Technical <br /> <span className="text-accent">Arsenal</span>
             </h2>
           </motion.div>

@@ -18,10 +18,10 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Recalibrated for 5 projects on 14-inch laptop: 
-  // -220% ensures the last card (Saaf Dilli) is perfectly centered/visible 
-  // as the scroll hits 100%, avoiding the "black screen" overshoot.
-  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-220%"]);
+  // Precision calibrated for 14-inch laptop (5 projects)
+  // -340% ensures the last project (Saaf Dilli) is perfectly positioned
+  // exactly as the scrollYProgress hits 1, releasing the pin immediately.
+  const xTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "-340%"]);
   const smoothX = useSpring(xTranslate, { stiffness: 80, damping: 30, restDelta: 0.001 });
   
   const progressBarWidth = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -34,8 +34,8 @@ export default function Home() {
       />
 
       <nav className="fixed top-0 left-0 w-full z-[100] p-8 flex justify-between items-center mix-blend-difference">
-        <div className="text-2xl font-black font-headline uppercase tracking-tighter text-white">
-          YK<span className="text-primary">.</span>SYS
+        <div className="text-xl md:text-2xl font-black font-headline uppercase tracking-tighter text-white">
+          Yogesh's <span className="text-primary">Essence</span>
         </div>
         <div className="hidden md:flex gap-12 text-xs font-mono uppercase tracking-[0.4em] font-bold text-white/50">
           <a href="#essence" className="hover:text-primary hover:tracking-[0.6em] transition-all duration-500">Essence</a>
@@ -57,8 +57,8 @@ export default function Home() {
         <SkillsArsenal />
       </section>
 
-      {/* Tightened runway to 220vh for 14-inch screens to avoid dead scrolls */}
-      <section id="projects" ref={scrollRef} className="scroll-section relative h-[220vh] bg-black">
+      {/* Tightened runway to 200vh to ensure instantaneous unsticking after the last project */}
+      <section id="projects" ref={scrollRef} className="scroll-section relative h-[200vh] bg-black">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
           
           <div className="absolute top-[12%] left-0 w-full px-8 md:px-24 flex justify-between items-end z-20 pointer-events-none">
@@ -67,7 +67,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-xl md:text-2xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
+              <h2 className="text-lg md:text-xl font-bold uppercase leading-none tracking-tighter font-headline text-white/90">
                 Things I've <br /> <span className="text-primary">Built</span>
               </h2>
             </motion.div>
