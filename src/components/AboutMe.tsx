@@ -12,47 +12,48 @@ export const AboutMe: React.FC = () => {
   });
 
   // Text 1: Opacity and Y-offset
-  const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.25], [0, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.15, 0.25], [50, 0, -50]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [0, 1, 1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [100, 0, 0, -100]);
 
   // Text 2: Opacity and Y-offset
-  const opacity2 = useTransform(scrollYProgress, [0.35, 0.5, 0.6], [0, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.35, 0.5, 0.6], [50, 0, -50]);
+  const opacity2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [0, 1, 1, 0]);
+  const y2 = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [100, 0, 0, -100]);
 
   // Text 3: Opacity and Y-offset
-  const opacity3 = useTransform(scrollYProgress, [0.7, 0.85, 0.95], [0, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.7, 0.85, 0.95], [50, 0, -50]);
+  const opacity3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [0, 1, 1, 1]);
+  const y3 = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [100, 0, 0, 0]);
 
   // Progress bar for the side
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={targetRef} className="h-[400vh] relative bg-bg-secondary">
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6">
-        {/* Background Text Accent */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] select-none">
-          <h2 className="text-[20vw] font-bold uppercase leading-none font-headline">Identity</h2>
+    <div ref={targetRef} className="h-full w-full relative">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 bg-background">
+        
+        {/* Deep background accent */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.01] select-none">
+          <h2 className="text-[25vw] font-black uppercase leading-none font-headline">IDENTITY</h2>
         </div>
 
         {/* Side Progress Indicator */}
-        <div className="absolute left-10 top-1/2 -translate-y-1/2 h-40 w-[2px] bg-border hidden md:block">
+        <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/10 hidden md:block">
           <motion.div 
             style={{ scaleY, originY: 0 }} 
-            className="w-full h-full bg-electric-blue"
+            className="w-full h-full bg-primary shadow-[0_0_15px_#3B82F6]"
           />
         </div>
 
-        <div className="max-w-4xl w-full text-center relative z-10 h-full">
+        <div className="max-w-4xl w-full text-center relative z-10 h-[60vh]">
           {/* Paragraph 1 */}
           <motion.div 
             style={{ opacity: opacity1, y: y1 }} 
             className="absolute inset-0 flex flex-col justify-center items-center"
           >
-            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-8 font-headline">
-              A Bit <span className="text-electric-blue">About Me</span>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 font-headline leading-tight">
+              A Bit <span className="text-primary">About Me</span>
             </h2>
-            <p className="text-lg md:text-2xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              I am a technology professional focused on developing intelligent applications and crafting seamless digital experiences. Proficient in Python, Flutter, React, Node.js, and system design, I combine technical expertise with analytical problem-solving to deliver efficient, scalable, and well-structured solutions.
+            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
+              I am a technology professional focused on developing <span className="text-white">intelligent applications</span> and crafting seamless digital experiences.
             </p>
           </motion.div>
 
@@ -61,8 +62,8 @@ export const AboutMe: React.FC = () => {
             style={{ opacity: opacity2, y: y2 }} 
             className="absolute inset-0 flex flex-col justify-center items-center"
           >
-            <p className="text-lg md:text-2xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              Beyond coding, I draw inspiration from strategic thinking and discipline cultivated through sports and fitness, which enhance leadership, collaboration, and resilience.
+            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
+              Beyond coding, I draw inspiration from <span className="text-white">strategic thinking</span> and discipline cultivated through sports and fitness.
             </p>
           </motion.div>
 
@@ -71,8 +72,8 @@ export const AboutMe: React.FC = () => {
             style={{ opacity: opacity3, y: y3 }} 
             className="absolute inset-0 flex flex-col justify-center items-center"
           >
-            <p className="text-lg md:text-2xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
-              This combination of technical skill and real-world experience informs my approach to creating digital solutions that are not only robust and elegant but also drive momentum, foster collaboration, and generate meaningful impact.
+            <p className="text-xl md:text-3xl leading-relaxed text-muted-foreground font-medium max-w-3xl">
+              I create digital solutions that are not only <span className="text-primary">robust and elegant</span> but also drive momentum and meaningful impact.
             </p>
           </motion.div>
         </div>

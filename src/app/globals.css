@@ -33,26 +33,27 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
-    background-image: radial-gradient(circle at 50% 50%, #111827 0%, #0B0F14 100%);
+    @apply bg-background text-foreground font-body antialiased;
+    background-image: radial-gradient(circle at 50% 50%, #05070a 0%, #000000 100%);
     min-height: 100vh;
   }
+  html {
+    @apply scroll-smooth;
+    /* Removed scroll-snap to avoid conflict with complex framer-motion scroll mapping */
+  }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline tracking-tight;
+    @apply font-headline tracking-tighter;
   }
 }
 
 .glass-card {
-  @apply bg-surface/50 backdrop-blur-md border border-border-subtle hover:border-electric-blue/50 transition-all duration-300;
+  @apply bg-card/30 backdrop-blur-2xl border border-white/5 hover:border-primary/30 transition-all duration-700;
 }
 
 .glow-text {
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
 }
 
-.gradient-border {
-  position: relative;
-  background: linear-gradient(var(--surface), var(--surface)) padding-box,
-              linear-gradient(135deg, var(--electric-blue), var(--neural-cyan)) border-box;
-  border: 1px solid transparent;
+.perspective-1000 {
+  perspective: 1000px;
 }
